@@ -1,0 +1,27 @@
+<div class="contenedor">
+    <h1>CINEPOLIS</h1>
+    <hr>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" [(ngModel)]="Nombre" placeholder="Nombre" required >
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cant. de compradores</mat-label>
+        <input matInput type="number" [(ngModel)]="CantCompradores" placeholder="Cant. Compradores" required >
+    </mat-form-field>
+    <mat-radio-group name="opciones" [(ngModel)]="TarjetaCineco">
+        <mat-radio-button 
+          name="tarjeta" value="true" style="margin: 10px;" checked>
+            Sí
+        </mat-radio-button>
+        <mat-radio-button 
+          name="tarjeta" value="false" style="margin: 10px;">
+            No
+        </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+        <mat-label>Cant. de boletos</mat-label>
+        <input matInput type="number" [(ngModel)]="CantBoletos" placeholder="Cant. boletos" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="calcular()">Calcular</button>
+</div>

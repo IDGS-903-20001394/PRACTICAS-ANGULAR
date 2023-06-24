@@ -1,0 +1,78 @@
+<div class="container">
+    <h1>Calculadora de resistencias</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-control">
+                <label class="form-label">Banda 1:</label>
+                <select class="form-select" [(ngModel)]="Banda1">
+                    <option *ngFor="let color of coloresBanda" [value]="color[0]"
+                    [style.background-color]="color[1]"
+                    [style.color]="color[2]"
+                    >{{color[0]}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-control">
+                <label class="form-label">Banda 2:</label>
+                <select class="form-select" [(ngModel)]="Banda2">
+                    <option *ngFor="let color of coloresBanda" [value]="color[0]"
+                    [style.background-color]="color[1]"
+                    [style.color]="color[2]"
+                    >{{color[0]}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-control">
+                <label class="form-label">Banda 3:</label>
+                <select class="form-select" [(ngModel)]="Banda3">
+                    <option *ngFor="let color of coloresBanda" [value]="color[0]"
+                    [style.background-color]="color[1]"
+                    [style.color]="color[2]"
+                    >{{color[0]}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-control">
+                <label class="form-label">Banda 4:</label>
+                <br>
+                <input class="form-check-input" type="radio" name="banda4" value="Oro" [(ngModel)]="Banda4"> Oro
+                <br>
+                <input class="form-check-input" type="radio" name="banda4" value="Plata" [(ngModel)]="Banda4"> Plata
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-success" (click)="calcular()">Calcular</button>
+    </div>
+    <hr>
+    <br>
+    <h1>Resultados</h1>
+    <br>
+    <table class="table" *ngIf="Valor != '' ">
+        <thead>
+            <tr>
+                <th>Banda 1</th>
+                <th>Banda 2</th>
+                <th>Banda 3</th>
+                <th>Valor</th>
+                <th>Tolerancia minima</th>
+                <th>Tolerancia maxima</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td [style.background-color]="bg1">{{V1}}</td>
+                <td [style.background-color]="bg2">{{V2}}</td>
+                <td [style.background-color]="bg3">{{V3}}</td>
+                <td>{{Valor}}</td>
+                <td>{{ToleranciaMin}}</td>
+                <td>{{ToleranciaMax}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
