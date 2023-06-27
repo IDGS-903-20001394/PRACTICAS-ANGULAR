@@ -69,7 +69,7 @@ export class ResistenciasComponent {
       case "Naranja": this.V3 = 1000, this.Valor += "000"; this.bg3="#FFA500"; break;
       case "Amarillo": this.V3 = 10000, this.Valor += "0000"; this.bg3="#FFFF00";  break;
       case "Verde": this.V3 = 100000, this.Valor += "00000"; this.bg3="#008000"; break;
-      case "Azul": this.V3 = 1000000, this.Valor += "000000";  this.bg2="#0000FF"; break;
+      case "Azul": this.V3 = 1000000, this.Valor += "000000";  this.bg3="#0000FF"; break;
       case "Violeta": this.V3 = 10000000, this.Valor += "0000000"; this.bg3="#800080"; break;
       case "Gris": this.V3 = 100000000, this.Valor += "00000000"; this.bg3="#808080"; break;
       case "Blanco": this.V3 = 1000000000,this.Valor += "000000000"; this.bg3="#FFFFFF"; break;
