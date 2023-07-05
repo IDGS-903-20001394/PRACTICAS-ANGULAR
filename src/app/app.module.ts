@@ -9,11 +9,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { D2pModule } from './practicas/distancia2p/d2p/d2p.module';
 import { CinepolisModule } from './practicas/cinepolis/cinepolis/cinepolis.module';
 import { MenuComponent } from './menu/menu.component';
+import { PizzeriaComponent } from './practicas/pizzeria/pizzeria.component';
+import { PizzeriaModule } from './practicas/pizzeria/pizzeria/pizzeria.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { MenuComponent } from './menu/menu.component';
     D2pModule,
     CinepolisModule,
     NgbModule,
+    PizzeriaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

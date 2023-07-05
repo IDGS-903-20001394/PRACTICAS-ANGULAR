@@ -1,0 +1,178 @@
+<div class="container">
+    <h1>Sistema Pizzero</h1>
+    <hr>
+    <h2>Agregar pizza</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="pedidosForm">
+    <div class="row">
+        <div class="col-4">
+            <mat-form-field>
+                <mat-label>Nombre del cliente:</mat-label>
+                <input matInput type="text" required formControlName="nombre" id="nombre" name="nombre" placeholder="Nombre..." >
+            </mat-form-field>
+                <div *ngIf="pedidosForm.get('nombre')?.touched && 
+                            pedidosForm.get('nombre')?.errors?.['required']"
+                    class="alert alert-danger">
+                    Es necesario agregar un nombre al pedido
+                </div>
+        </div>
+        <div class="col-4">
+            <mat-form-field>
+                <mat-label>Dirección del cliente:</mat-label>
+                <input matInput type="text" required formControlName="direccion" id="direccion" name="direccion" placeholder="Dirección..." >
+            </mat-form-field>
+                <div *ngIf="pedidosForm.get('direccion')?.touched && 
+                            pedidosForm.get('direccion')?.errors?.['required']"
+                    class="alert alert-danger">
+                    Es necesario agregar una dirección al pedido
+                </div>
+        </div>
+        <div class="col-4">
+            <mat-form-field>
+                <mat-label>Telefono del cliente:</mat-label>
+                <input matInput type="number" required formControlName="telefono" id="telefono" name="telefono" placeholder="Teléfono..." >
+            </mat-form-field>
+                <div *ngIf="pedidosForm.get('telefono')?.touched && 
+                            pedidosForm.get('telefono')?.errors?.['required']"
+                    class="alert alert-danger">
+                    Es necesario agregar un telefóno al pedido
+                </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-4">
+            <mat-radio-group name="opciones" formControlName="tamanio" id="tamanio" name="tamanio">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="form-control">
+                            <mat-label>Tamaño de pizza</mat-label>
+                            <mat-radio-button 
+                            name="tamaño" value="Chica" style="margin: 10px;">
+                                Chica $40
+                            </mat-radio-button>
+                            <mat-radio-button 
+                            name="tamaño" value="Mediana" style="margin: 10px;" >
+                                Mediana $80
+                            </mat-radio-button>
+                            <mat-radio-button 
+                            name="tamaño" value="Grande" style="margin: 10px;" >
+                                Grande $120
+                            </mat-radio-button>
+                        </div>
+                    </div>
+                </div>    
+            </mat-radio-group>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-control">
+                        <mat-label>Ingredientes</mat-label>
+                        <mat-checkbox formControlName="ing1" id="ing1" name="ing1">Jamón $10</mat-checkbox>
+                        <mat-checkbox formControlName="ing2" id="ing2" name="ing2">Piña $10</mat-checkbox>
+                        <mat-checkbox formControlName="ing3" id="ing3" name="ing3">Champiñones $10</mat-checkbox>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-5">
+                    <mat-form-field>
+                        <mat-label>Num. de pizzas:</mat-label>
+                        <input matInput type="number" required formControlName="cantidad" id="cantidad" name="cantidad" placeholder="Cantidad..." >
+                    </mat-form-field>
+                        <div *ngIf="pedidosForm.get('cantidad')?.touched && 
+                                    pedidosForm.get('cantidad')?.errors?.['required']"
+                            class="alert alert-danger">
+                            Es necesario agregar una cantidad de pizzas al pedido
+                        </div>
+                        <div *ngIf="pedidosForm.get('cantidad')?.touched && 
+                                    pedidosForm.get('cantidad')?.errors?.['min']"
+                            class="alert alert-danger">
+                            La cantidad minima de pizzas a agregar debe ser 1
+                        </div>
+                    <br>
+                    <br>
+                    <br>
+                    <button mat-raised-button color="primary" type="submit" >Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    </form>
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-6">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Detalle del pedido:</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Tamaño</th>
+                                <th>Ingredientes</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                                <th>Descartar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pizza of pizzasSelected">
+                                <td>{{pizza.tamanio}}</td>
+                                <td>{{pizza.ingredientes}}</td>
+                                <td>{{pizza.cantidad}}</td>
+                                <td>{{pizza.subtotal}}</td>
+                                <td>
+                                    <button mat-raised-button color="warn"
+                                    (click)="removePizza(pizzasSelected.indexOf(pizza))"
+                                    >
+                                    X
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>      
+                </mat-card-content> 
+                <button mat-raised-button color="primary"
+                (click)="openConfirmacion()"
+                *ngIf="pizzasSelected.length > 0"
+                >
+                Realizar venta</button>
+            </mat-card>      
+        </div>
+        <div class="col-6">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Ventas totales</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>    
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let venta of ventasTotales">
+                                <td>{{venta.nombre}}</td>
+                                <td>{{venta.direccion}}</td>
+                                <td>{{venta.telefono}}</td>
+                                <td>{{venta.total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                    <br>
+                    <h2>Total de ventas: ${{totalVentas}}</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
